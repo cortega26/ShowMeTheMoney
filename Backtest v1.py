@@ -1,3 +1,7 @@
+#########################################################################################
+# This code let's you backtest different DCA bot strategies using 3commas.io parameters #
+#########################################################################################
+
 import pandas as pd
 import numpy as np
 import datetime
