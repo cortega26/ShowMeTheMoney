@@ -9,7 +9,7 @@ filepath = "https://www.cryptodatadownload.com/cdd/Binance_LTCUSDT_minute.csv"
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Now we want to create a dataframe and use Pandas' to_csv function to read in our file
-data = pd.read_csv(filepath, skiprows=1)  # we use skiprows parameter because first row contains our web address
+data = pd.read_csv(filepath, skiprows=1)  # we use skiprows parameter because first row contains cryptodatadownload's web address
 
 # Finally we convert the dataframe into an array in order to easily iterate thru it
 data = np.array(data)
