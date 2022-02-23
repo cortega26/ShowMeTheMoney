@@ -31,6 +31,7 @@ data = np.array(data)
 # ip: initial price
 # pd: price deviation to open safety orders (% from initial order)
 # fp: Total profit for the Backtest Strategy
+# tp: summation of inv on each iteration (auxiliary variable)
 
 def Backtest(tp,bos,fsos,sovs,pd,stc,tdays):
     ip = 0 
