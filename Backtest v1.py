@@ -86,9 +86,8 @@ def Backtest(tp,bos,fsos,sovs,pd,stc,tdays):
                 elif float(i[6]) > high2:
                     high2 = float(i[5])
         else:
-            pass
-            #print("Missing values or equal to zero. Program terminated.")
-            #break
+            print("Missing values or equal to zero. Program terminated.")
+            break
             
             
     elapsed = datetime2 - datetime1
