@@ -1,3 +1,3 @@
 # Trading
 
-This code is to test 3commas.io DCA trading bots using Binance historical data.
+This script tests 3commas.io DCA trading bots using Binance historical data retrieved from www.cryptodownload.com.
