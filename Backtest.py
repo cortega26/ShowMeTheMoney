@@ -97,7 +97,6 @@ def Backtest(tp,bos,fsos,sovs,pd,stc,tdays):
             
     elapsed = datetime2 - datetime1
     elapsed_float = elapsed.total_seconds() / 86400
-    #print(elapsed_float)
     print("Starting date:",datetime1)
     print("Latest date:",datetime2)
     print("Days of Backtesting:",elapsed)
