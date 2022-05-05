@@ -107,7 +107,6 @@ def Backtest(tp,bos,fsos,sovs,pd,stc,tdays):
     print("Aprox. earnings/day:",round(fp/elapsed_float,2))
     print("Average money invested:",round(tm/(elapsed_float*24*60),2))
     print("Daily profitability vs. Average money invested: " + str(round((24 * 60 * 100 * fp / tm),2)) + "%")
-    #print(volatility)
     print("Mean of daily volatility:", str(round(statistics.mean(volatility),2)) + "%")
     print("")
     
