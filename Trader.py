@@ -1,4 +1,4 @@
-# Este ejercicio se solicitó:
+# En este ejercicio se nos solicitó:
 # El retorno y anualizado de tres stock, a saber: SPY, VWO y QQQ entre 2015 y 2021 (ambos inclusive)
 # Graficar el retorno acumulado de los stocks indicados durante ese mismo período
 
