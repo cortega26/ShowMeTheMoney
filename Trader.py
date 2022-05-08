@@ -1,5 +1,3 @@
-# I submitted this code along my resume when I applied for job as a Trader at www.fintual.cl
-
 import requests
 import pandas as pd
 import numpy as np
