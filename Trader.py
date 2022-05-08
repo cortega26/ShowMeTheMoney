@@ -1,6 +1,7 @@
 # En este ejercicio se nos solicitó:
-# El retorno y anualizado de tres stock, a saber: SPY, VWO y QQQ entre 2015 y 2021 (ambos inclusive)
-# Graficar el retorno acumulado de los stocks indicados durante ese mismo período
+# 1.- El retorno total y anualizado de tres stocks: SPY, VWO y QQQ entre 2015 y 2021 (ambos inclusive)
+# 2.- Graficar el retorno acumulado de los stocks indicados durante ese mismo período
+# Para ambos ejercicios se nos indicó que utilizáramos la free API key de Alpha Vantage
 
 import requests
 import pandas as pd
