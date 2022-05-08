@@ -45,7 +45,6 @@ for ticker in tickers:
     df_retorno_diario[ticker] = df['close'].pct_change()[1:] #El retorno acumulado se calcula mediante la variación porcentual diaria
     riesgo_beneficio[ticker] = retorno_anualizado / volat_promedio
 
-    # Impresión de las respuestas
     print("El retorno total de {} entre 2015-01-01 y 2021-12-31 es: {}%".format(ticker, retorno_porcentual))
     print("La volatilidad anual promedio de {} es: {}%".format(ticker, volat_promedio))
     print("El retorno anualizado de {} es: {}%\n".format(ticker, retorno_anualizado))
@@ -55,8 +54,7 @@ for ticker in tickers:
         for llave, valor in riesgo_beneficio.items():
             print("El cociente beneficio/volatilidad de {} es {}".format(llave, round(valor, 2)))
         print("La mejor relación beneficio vs. volatilidad (retorno vs. riesgo) la tiene la tiene:", max(riesgo_beneficio, key=riesgo_beneficio.get),"\n")
-        df2 = df['timestamp'].iloc[1:] # DataFrame temporal al cual le eliminamos la primera fila ya que retorno diario se empieza a contabilizar desde la segunda jornada
-        df_retorno_diario.set_index(df2, inplace = True) #Reemplazamos el índice del DataFrame retorno diario con las fechas para que en plot muestre fechas en vez de números
+        df2 = df['timestamp'].iloc[1:]
+        df_retorno_diario.set_index(df2, inplace = True) #Reemplazamos el índice del DataFrame retorno diario con las fechas
         df3 = df_retorno_diario.add(1).cumprod().sub(1) # Aplicación de la fórmula de Retornos Acumulados
-        df3.plot(title = "Serie Temporal de Retornos Acumulados", ylabel = "Retorno Acumulado (ganancia por cada US$ invertido)", xlabel = "Fecha", rot = 45, figsize=(12,8)) # Finalmente el gráfico 
-   
+        df3.plot(title = "Serie Temporal de Retornos Acumulados", ylabel = "Retorno Acumulado (ganancia por cada US$ invertido)", xlabel = "Fecha", rot = 45, figsize=(12,8))
