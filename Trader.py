@@ -24,8 +24,6 @@ print(' *', ' ' * 106, '*', '\n','*' * 110, '\n')
 
 
 def constructor_URL(ticker):
-    #print("Indica el código (ticker) del activo:")
-    #ticker = input()
     URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&outputsize=full&apikey=7M2JKVOWY1ZE0IFW&datatype=csv'
     return URL
 
