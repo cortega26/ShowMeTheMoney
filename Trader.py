@@ -32,20 +32,20 @@ df_retorno_diario = pd.DataFrame() # Creamos un dataframe vacío al que luego in
 
 for ticker in tickers:
     # Proceso de carga y manipulación de datos
-    df = pd.read_csv(constructor_URL(ticker)) # Cargamos el CSV en un Dataframe en Pandas
-    df = df.iloc[::-1] # Invertimos el orden del Dataframe para poder trabajarlo correctamente (de la fecha más antigua a la más reciente)
-    df['Ret_Log'] = np.log(df['close'] / df['close'].shift(1)).dropna() # Calculamos el retorno logarítmico usando el precio de cierre
-    df.drop(['high', 'low', 'volume'], axis = 1, inplace = True) # Eliminamos las columnas que no utilizaremos
-    df.drop(df[df['timestamp'] < '2015-01-01'].index, inplace = True) # Eliminamos todas las fechas anteriores al 1 de enero de 2015
-    df.drop(df[df['timestamp'] > '2021-12-31'].index, inplace = True) # Eliminamos todas las fechas posteriores al 31 de diciembre de 2021
+    df = pd.read_csv(constructor_URL(ticker))
+    df = df.iloc[::-1]
+    df['Ret_Log'] = np.log(df['close'] / df['close'].shift(1)).dropna()
+    df.drop(['high', 'low', 'volume'], axis = 1, inplace = True)
+    df.drop(df[df['timestamp'] < '2015-01-01'].index, inplace = True)
+    df.drop(df[df['timestamp'] > '2021-12-31'].index, inplace = True)
     
     # Cálculos para obtener la información requerida
-    df['Volatilidad'] = df['Ret_Log'].rolling(window=252).std() * np.sqrt(252) * 100 # Calculamos la volatilidad usando la desviación estándar y pandas rolling   
-    volat_promedio = round(df['Volatilidad'].mean(), 2) # Cálculo de la volatilidad promedio durante el período
-    retorno_total = round((df['close'].iloc[-1] - df['open'].iloc[0]) / df['open'].iloc[0], 4) # Cálculo del retorno total durante el período
-    retorno_porcentual = round(retorno_total * 100, 2) # Retorno total del período en términos porcentuales (pregunta 1, parte 1)
-    retorno_anualizado = round((((1 + retorno_total)**(1/7)) - 1) * 100, 2) # Cálculo del retorno anualizado = ((1 + retorno_total)^(1/años) - 1)
-    df_retorno_diario[ticker] = df['close'].pct_change()[1:] #El retorno acumulado se calcula mediante la variación porcentual diaria
+    df['Volatilidad'] = df['Ret_Log'].rolling(window=252).std() * np.sqrt(252) * 100   
+    volat_promedio = round(df['Volatilidad'].mean(), 2)
+    retorno_total = round((df['close'].iloc[-1] - df['open'].iloc[0]) / df['open'].iloc[0], 4)
+    retorno_porcentual = round(retorno_total * 100, 2)
+    retorno_anualizado = round((((1 + retorno_total)**(1/7)) - 1) * 100, 2)
+    df_retorno_diario[ticker] = df['close'].pct_change()[1:]
     riesgo_beneficio[ticker] = retorno_anualizado / volat_promedio
 
     print("El retorno total de {} entre 2015-01-01 y 2021-12-31 es: {}%".format(ticker, retorno_porcentual))
@@ -53,7 +53,7 @@ for ticker in tickers:
     print("El retorno anualizado de {} es: {}%\n".format(ticker, retorno_anualizado))
 
 
-    if ticker == tickers[-1]: #En la última iteración, ya con todos los datos, indicamos la probable mejor opción y se genera el gráfico
+    if ticker == tickers[-1]:
         for llave, valor in riesgo_beneficio.items():
             print("El cociente beneficio/volatilidad de {} es {}".format(llave, round(valor, 2)))
         print("La mejor relación beneficio vs. volatilidad (retorno vs. riesgo) la tiene la tiene:", max(riesgo_beneficio, key=riesgo_beneficio.get),"\n")
