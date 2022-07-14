@@ -1,4 +1,4 @@
-# An application for a job in a fintech company included this exercise:
+# As a part of an application for a job in a fintech company I was tasked to do this exercise:
 # 1.- Calculate total and annualized return for three stocks: SPY, VWO and QQQ between 2015 and 2021 (both included)
 # 2.- Plot the accumulated return for the three stocks during the same period
 # We were instructed to use the Alpha Vantage free API to complete the tasks
