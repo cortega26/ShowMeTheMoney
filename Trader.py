@@ -9,7 +9,7 @@ import numpy as np
 import math
 
 
-# URL genérica = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={SYMBOL}&outputsize=full&apikey=7M2JKVOWY1ZE0IFW&datatype=csv'
+# URL genérica = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={SYMBOL}&outputsize=full&apikey={YOUR_API_KEY}&datatype=csv'
 # Sustituir {SYMBOL} por el ticker correspondiente
 
 tickers = ['SPY', 'VWO', 'QQQ']
@@ -24,11 +24,11 @@ print(' *', ' ' * 106, '*', '\n','*' * 110, '\n')
 
 
 def constructor_URL(ticker):
-    URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&outputsize=full&apikey=7M2JKVOWY1ZE0IFW&datatype=csv'
+    URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + ticker + '&outputsize=full&apikey={YOUR_API_KEY}&datatype=csv'
     return URL
 
-riesgo_beneficio = {} # Creamos un diccionario vacío para almacenar los nombres de activos y su respectivo riesgo-beneficio
-df_retorno_diario = pd.DataFrame() # Creamos un dataframe vacío al que luego insertaremos columnas
+riesgo_beneficio = {}
+df_retorno_diario = pd.DataFrame()
 
 for ticker in tickers:
     # Proceso de carga y manipulación de datos
