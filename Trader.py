@@ -1,7 +1,7 @@
-# En este ejercicio se nos solicitó:
-# 1.- El retorno total y anualizado de tres stocks: SPY, VWO y QQQ entre 2015 y 2021 (ambos inclusive)
-# 2.- Graficar el retorno acumulado de los stocks indicados durante ese mismo período
-# Para ambos ejercicios se nos indicó que utilizáramos la free API key de Alpha Vantage
+# An application for a job in a fintech company included this exercise:
+# 1.- Calculate total and annualized return for three stocks: SPY, VWO and QQQ between 2015 and 2021 (both included)
+# 2.- Plot the accumulated return for the three stocks during the same period
+# We were instructed to use the Alpha Vantage free API to complete the tasks
 
 import requests
 import pandas as pd
@@ -10,10 +10,9 @@ import math
 
 
 # URL genérica = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={SYMBOL}&outputsize=full&apikey={YOUR_API_KEY}&datatype=csv'
-# Sustituir {SYMBOL} por el ticker correspondiente
+# Change {SYMBOL} and {YOUR_API_KEY} for their corresponding values
 
 tickers = ['SPY', 'VWO', 'QQQ']
-
 
 print('\n','*' * 110, "\n", '*', ' ' * 106, '*')
 print(' *   \033[1mNOTA BENE.\033[0m A efectos de una comparación sin sesgos deberíamos incluir los eventuales divivendos de       *')
@@ -31,7 +30,7 @@ riesgo_beneficio = {}
 df_retorno_diario = pd.DataFrame()
 
 for ticker in tickers:
-    # Proceso de carga y manipulación de datos
+    # Data mining and manipulation
     df = pd.read_csv(constructor_URL(ticker))
     df = df.iloc[::-1]
     df['Ret_Log'] = np.log(df['close'] / df['close'].shift(1)).dropna()
@@ -39,7 +38,7 @@ for ticker in tickers:
     df.drop(df[df['timestamp'] < '2015-01-01'].index, inplace = True)
     df.drop(df[df['timestamp'] > '2021-12-31'].index, inplace = True)
     
-    # Cálculos para obtener la información requerida
+    # Calculations for obtain the requested information
     df['Volatilidad'] = df['Ret_Log'].rolling(window=252).std() * np.sqrt(252) * 100   
     volat_promedio = round(df['Volatilidad'].mean(), 2)
     retorno_total = round((df['close'].iloc[-1] - df['open'].iloc[0]) / df['open'].iloc[0], 4)
